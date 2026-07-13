@@ -51,12 +51,66 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar, .badge, .terminal-tab, .setup-tab-btn, .a
     font-family: var(--font-pixel) !important;
 }
 
+.hero-title, .page-hero h1, .section-header h2, .cta-section h2 {
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
 body {
     overflow-x: hidden;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.03) 0%, transparent 40%);
     background-attachment: fixed;
+    transform-origin: center;
+    animation: crtBootUp 0.5s ease-out;
+}
+
+/* CRT scanlines + vignette, laid over the whole page like an old monitor */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 1px,
+        rgba(0, 0, 0, 0.035) 2px,
+        rgba(0, 0, 0, 0.035) 3px
+    );
+    mix-blend-mode: multiply;
+    animation: crtFlicker 6s infinite;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.55);
+}
+
+@keyframes crtBootUp {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.6);
+        filter: brightness(3);
+    }
+    30% {
+        opacity: 1;
+        transform: scaleY(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        filter: brightness(1);
+    }
+}
+
+@keyframes crtFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.94; }
 }
 
 /* Buttons - Flipper UI Retro Pixel Style */
@@ -717,6 +771,8 @@ body {
     gap: 8px;
     background-color: var(--bg-card);
     border: 2px solid var(--border-color);
+    outline: 2px solid rgba(255, 107, 0, 0.12);
+    outline-offset: 4px;
     padding: 24px;
     text-decoration: none;
     transition: all var(--transition-normal);
@@ -904,6 +960,8 @@ body {
 .feature-card {
     background-color: var(--bg-card);
     border: 2px solid var(--border-color);
+    outline: 2px solid rgba(255, 107, 0, 0.12);
+    outline-offset: 4px;
     border-radius: 0px;
     padding: 32px;
     transition: all var(--transition-normal);
