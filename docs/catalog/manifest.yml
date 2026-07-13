@@ -10,7 +10,7 @@ sourcecode:
   location:
     origin: https://github.com/contactjayclatty/JAYX.git
     ## Updated automatically after catalog-prep commit is pushed
-    commit_sha: REPLACE_AFTER_PUSH
+    commit_sha: 073ecae0a112477e69fa639786708fc254f05858
     subdir: apps/jayx
 
 short_description: Live PC CPU/RAM/GPU stats, FPS, and system info over USB
