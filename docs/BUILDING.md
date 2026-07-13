@@ -1,6 +1,6 @@
 # Building
 
-All commands run from inside a specific app's folder, e.g. `apps/my_app/`.
+All commands run from inside a specific app's folder, e.g. `apps/jayx/`.
 
 ## Requirements
 

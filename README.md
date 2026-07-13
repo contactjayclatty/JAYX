@@ -4,16 +4,23 @@ Live PC monitor for [Flipper Zero](https://flipperzero.one) — CPU, RAM, GPU, t
 
 Built with [ufbt](https://github.com/flipperdevices/flipperzero-ufbt).
 
-## Apps
+**Bluetooth is still in development** — check this repo for updates. Use USB for now.
 
-| App | Description |
-| --- | --- |
-| **[JAYX](apps/jayx)** | Live PC monitor: CPU / RAM / GPU / temps, FPS, system info (USB) |
-| [my_app](apps/my_app) | Minimal ufbt scaffold |
+## Screenshots
 
-**Bluetooth for JAYX is still in development** — use USB for now.
+| Main menu | Live stats | FPS |
+| :---: | :---: | :---: |
+| ![Main menu](screenshots/MainMenu.png) | ![Live stats](screenshots/livestats.png) | ![FPS](screenshots/fpscounter.png) |
 
-## Quick start — JAYX
+| System info | OS | CPU |
+| :---: | :---: | :---: |
+| ![System](screenshots/systeminfo.png) | ![OS](screenshots/osinfo.png) | ![CPU](screenshots/cpuinfo.png) |
+
+| About | No game / FPS idle | Bluetooth (WIP) |
+| :---: | :---: | :---: |
+| ![About](screenshots/Aboutpage.png) | ![FPS idle](screenshots/fpscounterNogame.png) | ![Bluetooth WIP](screenshots/Bluetoothpage.png) |
+
+## Quick start
 
 ### 1. Build & install on Flipper
 
@@ -39,7 +46,7 @@ python monitor.py --usb
 | FPS | [RTSS](https://www.guru3d.com/files-details/rtss-rivatuner-statistics-server-download.html) |
 | CPU temp | LibreHardwareMonitor running |
 
-### Controls (JAYX)
+### Controls
 
 | Key | Action |
 | --- | --- |
@@ -50,13 +57,10 @@ python monitor.py --usb
 ## Layout
 
 ```
-apps/
-  jayx/           # FAP source
-  my_app/
+apps/jayx/        # Flipper FAP
 pc_agent/         # Windows metrics agent
+screenshots/      # Device UI captures
 docs/
-  BUILDING.md
-  ADDING_AN_APP.md
 ```
 
 ## Docs
