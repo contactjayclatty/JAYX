@@ -1,6 +1,8 @@
-# FlipperZero
+# JAYX
 
-Flipper Zero external apps built with [ufbt](https://github.com/flipperdevices/flipperzero-ufbt), plus a Windows PC agent for live stats.
+Live PC monitor for [Flipper Zero](https://flipperzero.one) — CPU, RAM, GPU, temps, FPS, and system info over USB.
+
+Built with [ufbt](https://github.com/flipperdevices/flipperzero-ufbt).
 
 ## Apps
 
