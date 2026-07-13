@@ -17,6 +17,7 @@ function initFlipperSimulator() {
 
     const screenInfo = document.getElementById("screen-info");
     const led = document.getElementById("flipper-led");
+    const dotsContainer = document.getElementById("sim-dots");
 
     // UI Button Elements
     const btnUp = document.getElementById("btn-up");
@@ -30,6 +31,7 @@ function initFlipperSimulator() {
     let currentScreenIdx = 0;
     let specsCardIdx = 0;
     let isFpsIdle = false;
+    let autoplayTimer = null;
 
     // Simulation Data Model
     const screens = [
@@ -84,18 +86,44 @@ function initFlipperSimulator() {
         }, 150);
     }
 
+    // Build the screen-position dots once (they don't change count)
+    function buildDots() {
+        if (!dotsContainer) return;
+        screens.forEach((s, idx) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "sim-dot";
+            dot.setAttribute("aria-label", `Go to ${s.name}`);
+            dot.addEventListener("click", () => {
+                stopAutoplay();
+                currentScreenIdx = idx;
+                specsCardIdx = 0;
+                updateDisplay();
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        Array.from(dotsContainer.children).forEach((dot, idx) => {
+            dot.classList.toggle("active", idx === currentScreenIdx);
+        });
+    }
+
     // Update screen display image & text description
     function updateDisplay(withBlink = true) {
         if (withBlink) {
             triggerLedBlink();
         }
 
-        // Add a slight flicker transition to mimic LCD redraw
-        displayImg.style.opacity = "0.2";
-        
+        // Quick dip + scale to mimic an LCD redraw, smoother than a flat flicker
+        displayImg.style.opacity = "0.15";
+        displayImg.style.transform = "scale(0.97)";
+
         setTimeout(() => {
             const screen = screens[currentScreenIdx];
-            
+
             if (screen.isSpecs) {
                 displayImg.src = screen.files[specsCardIdx];
                 screenInfo.innerText = `Screen: Specs (${specsCardIdx + 1}/3) • Up/Down to scroll`;
@@ -106,25 +134,47 @@ function initFlipperSimulator() {
                 displayImg.src = screen.file;
                 screenInfo.innerText = `Screen: ${screen.name}`;
             }
-            
+
             displayImg.style.opacity = "0.88";
-        }, 60);
+            displayImg.style.transform = "scale(1)";
+            updateDots();
+        }, 70);
+    }
+
+    // Idle auto-demo: cycles screens for visitors who haven't interacted yet.
+    // Stops permanently the first time someone actually uses the controls.
+    function startAutoplay() {
+        autoplayTimer = setInterval(() => {
+            currentScreenIdx = (currentScreenIdx + 1) % screens.length;
+            specsCardIdx = 0;
+            updateDisplay();
+        }, 3500);
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
     }
 
     // Button Click Listeners
     btnRight.addEventListener("click", () => {
+        stopAutoplay();
         currentScreenIdx = (currentScreenIdx + 1) % screens.length;
         specsCardIdx = 0; // reset specs card index
         updateDisplay();
     });
 
     btnLeft.addEventListener("click", () => {
+        stopAutoplay();
         currentScreenIdx = (currentScreenIdx - 1 + screens.length) % screens.length;
         specsCardIdx = 0;
         updateDisplay();
     });
 
     btnUp.addEventListener("click", () => {
+        stopAutoplay();
         const screen = screens[currentScreenIdx];
         if (screen.isSpecs) {
             specsCardIdx = (specsCardIdx - 1 + screen.files.length) % screen.files.length;
@@ -135,6 +185,7 @@ function initFlipperSimulator() {
     });
 
     btnDown.addEventListener("click", () => {
+        stopAutoplay();
         const screen = screens[currentScreenIdx];
         if (screen.isSpecs) {
             specsCardIdx = (specsCardIdx + 1) % screen.files.length;
@@ -145,6 +196,7 @@ function initFlipperSimulator() {
     });
 
     btnOk.addEventListener("click", () => {
+        stopAutoplay();
         const screen = screens[currentScreenIdx];
         if (currentScreenIdx === 0) {
             // Main menu OK -> System Stats
@@ -160,6 +212,7 @@ function initFlipperSimulator() {
     });
 
     btnBack.addEventListener("click", () => {
+        stopAutoplay();
         if (currentScreenIdx !== 0) {
             currentScreenIdx = 0; // Back to main menu
             specsCardIdx = 0;
@@ -206,6 +259,13 @@ function initFlipperSimulator() {
 
     // Make simulator focusable so keyboard works
     simulatorEl.setAttribute("tabindex", "0");
+
+    // Pause auto-demo while the user is actively exploring with the mouse
+    simulatorEl.addEventListener("mouseenter", stopAutoplay);
+
+    buildDots();
+    updateDots();
+    startAutoplay();
 }
 
 /* ==========================================================================

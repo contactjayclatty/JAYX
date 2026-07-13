@@ -509,7 +509,7 @@ body {
     image-rendering: pixelated;
     mix-blend-mode: multiply; /* Blends black with orange backlight */
     opacity: 0.88;
-    transition: opacity 0.1s ease;
+    transition: opacity 0.12s ease, transform 0.15s ease;
 }
 
 /* Interface Controls (D-Pad & Back) */
@@ -549,6 +549,12 @@ body {
     justify-content: center;
     color: #a4aab5;
     transition: color var(--transition-fast), transform 0.05s ease;
+}
+
+.ctrl-btn:focus-visible,
+.sim-dot:focus-visible {
+    outline: 2px solid var(--orange-primary);
+    outline-offset: 2px;
 }
 
 .ctrl-btn:hover {
@@ -661,6 +667,35 @@ body {
     font-size: 0.75rem;
     font-weight: bold;
     border: 1px solid rgba(255,107,0,0.2);
+}
+
+.sim-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.sim-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.sim-dot:hover {
+    background-color: var(--orange-glow-light);
+    border-color: var(--border-hover);
+}
+
+.sim-dot.active {
+    background-color: var(--orange-primary);
+    border-color: var(--orange-primary);
+    box-shadow: 0 0 6px var(--orange-glow);
 }
 
 /* Explore Other Pages (Home) */
