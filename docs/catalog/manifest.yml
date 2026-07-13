@@ -1,23 +1,12 @@
-## Flipper Apps Catalog manifest for JAYX
-## Submit via PR to: https://github.com/flipperdevices/flipper-application-catalog
-## Target path in catalog repo:
-##   applications/USB/jayx/manifest.yml
-##
-## After every release: update commit_sha to the tag/commit you want published.
-
 sourcecode:
   type: git
   location:
     origin: https://github.com/contactjayclatty/JAYX.git
-    ## Updated automatically after catalog-prep commit is pushed
-    commit_sha: 073ecae0a112477e69fa639786708fc254f05858
+    commit_sha: 45de6eeecf00a788f1e597b6a755b0640e99eb37
     subdir: apps/jayx
-
 short_description: Live PC CPU/RAM/GPU stats, FPS, and system info over USB
-
 description: "@README.md"
 changelog: "@changelog.md"
-
 screenshots:
   - screenshots/livestats.png
   - screenshots/fpscounter.png

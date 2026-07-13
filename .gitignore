@@ -23,3 +23,7 @@ venv/
 *.log
 .DS_Store
 Thumbs.db
+
+# Local release staging
+release/
+
