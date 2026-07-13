@@ -1,54 +1,53 @@
-# JAYX v0.3
+# JAYX
 
-Live PC stats on Flipper Zero over **USB**.
+Live **PC monitor** for Flipper Zero over **USB**.
 
-**Bluetooth is still in development** — check GitHub for updates. Use USB for now.
+Shows CPU, RAM, GPU, temperatures, FPS, and hardware/OS info on the Flipper screen. A small Windows agent streams data from your PC.
 
-**Full setup guide:** [docs/SETUP.md](../../docs/SETUP.md)
+**Bluetooth is still in development.** Use USB for now.
+
+## Full setup
+
+See the main guide: **[docs/SETUP.md](../../docs/SETUP.md)**
+
+Quick path:
+
+1. On PC: `pip install ufbt` and `pip install -r pc_agent/requirements.txt`
+2. Build/install: `cd apps/jayx && ufbt launch` (stop any agent first)
+3. Flipper: **Apps → USB → JAYX → USB → OK**
+4. PC: `cd pc_agent && python monitor.py --usb`
 
 ## Pages
 
 | Page | Content |
 |------|---------|
-| **System** | CPU / RAM / GPU / VRAM usage + temps |
-| **Game** | Title strip, large FPS, frametime |
-| **Specs** | Scrollable system info (sections) |
-| **About** | App version, link type |
+| **System** | CPU / RAM / GPU / VRAM usage and temps |
+| **Game** | Game/window name, large FPS, frametime |
+| **Specs** | SYSTEM · OS · CPU · MEMORY · GPU (Up/Down) |
+| **About** | Version and link type |
 
-### Specs controls
-- **Left / Right** — change page  
-- **Up / Down** — switch system-info section (card view)  
+## Controls
 
-Sections: **SYSTEM | OS | CPU | MEMORY | GPU** (one clean card each)
+| Key | Action |
+| --- | --- |
+| **OK** | Start USB (from menu) |
+| **Left / Right** | Change page |
+| **Up / Down** | Specs section cards |
+| **Back** | Exit (or leave Bluetooth WIP screen) |
 
-## Build & install
+## Requirements
 
-See **[docs/SETUP.md](../../docs/SETUP.md)** for the complete walkthrough.
+| Need | For |
+|------|-----|
+| Windows PC + USB cable | Required |
+| Python 3.10+ agent | Required |
+| NVIDIA drivers | GPU stats |
+| RTSS | FPS |
+| LibreHardwareMonitor | CPU temp |
 
-```sh
-cd apps/jayx
-ufbt launch          # stop monitor.py first — it locks COM
-```
+## Source
 
-**Apps → USB → JAYX** → **USB** → OK
-
-## PC agent
-
-```sh
-cd pc_agent
-pip install -r requirements.txt
-python monitor.py --usb
-```
-
-## Optional
-
-| Feature | Need |
-|---------|------|
-| GPU live + VRAM | NVIDIA drivers |
-| FPS | RTSS |
-| CPU temp | LibreHardwareMonitor |
-
-## Protocol v3
-
-- **Live** (44 B, ~1 Hz)  
-- **Specs section** (126 B × 5, on connect + every 30 s)  
+- App: `apps/jayx/`
+- Agent: `pc_agent/`
+- License: MIT (see repository root `LICENSE`)
+- Repo: https://github.com/contactjayclatty/JAYX

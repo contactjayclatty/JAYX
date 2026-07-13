@@ -70,6 +70,7 @@ docs/
 ## Docs
 
 - **[docs/SETUP.md](docs/SETUP.md) — full install & usage guide**  
+- [docs/CATALOG.md](docs/CATALOG.md) — Flipper Apps Catalog submission checklist  
 - [apps/jayx/README.md](apps/jayx/README.md) — app pages & protocol notes  
 - [docs/BUILDING.md](docs/BUILDING.md) — ufbt commands  
 - [docs/ADDING_AN_APP.md](docs/ADDING_AN_APP.md) — scaffold a new app  
@@ -82,4 +83,4 @@ docs/
 
 ## License
 
-Use and modify for personal projects. Add a `LICENSE` file if you want a formal license when publishing.
+[MIT](LICENSE) — required for Flipper Apps Catalog distribution.
