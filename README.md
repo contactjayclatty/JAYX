@@ -6,6 +6,10 @@ Built with [ufbt](https://github.com/flipperdevices/flipperzero-ufbt).
 
 **Bluetooth is still in development** — check this repo for updates. Use USB for now.
 
+## Full setup guide
+
+**→ [docs/SETUP.md](docs/SETUP.md)** — complete walkthrough: install tools, flash JAYX, run the PC agent, optional RTSS/temps, and troubleshooting.
+
 ## Screenshots
 
 | Main menu | Live stats | FPS |
@@ -22,21 +26,21 @@ Built with [ufbt](https://github.com/flipperdevices/flipperzero-ufbt).
 
 ## Quick start
 
-### 1. Build & install on Flipper
+> Prefer the [full setup guide](docs/SETUP.md) the first time.
 
 ```sh
-cd apps/jayx
-ufbt              # build → dist/jayx.fap
-ufbt launch       # install & run (Flipper on USB)
-```
-
-On device: **Apps → USB → JAYX** → select **USB** → OK.
-
-### 2. Run the PC agent (Windows)
-
-```sh
+# PC tools (once)
 cd pc_agent
 pip install -r requirements.txt
+pip install ufbt
+
+# Flipper — close any monitor.py / qFlipper first
+cd ../apps/jayx
+ufbt launch
+
+# On Flipper: Apps → USB → JAYX → USB → OK
+# Then on PC:
+cd ../../pc_agent
 python monitor.py --usb
 ```
 
@@ -65,7 +69,8 @@ docs/
 
 ## Docs
 
-- [apps/jayx/README.md](apps/jayx/README.md) — JAYX usage  
+- **[docs/SETUP.md](docs/SETUP.md) — full install & usage guide**  
+- [apps/jayx/README.md](apps/jayx/README.md) — app pages & protocol notes  
 - [docs/BUILDING.md](docs/BUILDING.md) — ufbt commands  
 - [docs/ADDING_AN_APP.md](docs/ADDING_AN_APP.md) — scaffold a new app  
 

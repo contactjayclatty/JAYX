@@ -4,6 +4,8 @@ Live PC stats on Flipper Zero over **USB**.
 
 **Bluetooth is still in development** — check GitHub for updates. Use USB for now.
 
+**Full setup guide:** [docs/SETUP.md](../../docs/SETUP.md)
+
 ## Pages
 
 | Page | Content |
@@ -21,22 +23,22 @@ Sections: **SYSTEM | OS | CPU | MEMORY | GPU** (one clean card each)
 
 ## Build & install
 
+See **[docs/SETUP.md](../../docs/SETUP.md)** for the complete walkthrough.
+
 ```sh
 cd apps/jayx
-ufbt launch
+ufbt launch          # stop monitor.py first — it locks COM
 ```
 
-**Apps → USB → JAYX**
+**Apps → USB → JAYX** → **USB** → OK
 
 ## PC agent
 
 ```sh
 cd pc_agent
 pip install -r requirements.txt
-python monitor.py --usb    # or --bt
+python monitor.py --usb
 ```
-
-Stop the agent before `ufbt launch` (COM port lock).
 
 ## Optional
 
