@@ -1,0 +1,14 @@
+App(
+    appid="jayx",
+    name="JAYX",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="jayx_app",
+    requires=["gui", "bt"],
+    stack_size=3 * 1024,
+    fap_category="USB",
+    fap_version="0.3",
+    fap_icon="jayx.png",
+    fap_description="Live PC stats, FPS, scrollable system info",
+    fap_author="Jay",
+    fap_icon_assets="images",
+)
