@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
    ========================================================================== */
 function initFlipperSimulator() {
     const displayImg = document.getElementById("display-screen");
+    if (!displayImg) return; // Simulator isn't on this page
+
     const screenInfo = document.getElementById("screen-info");
     const led = document.getElementById("flipper-led");
-    
+
     // UI Button Elements
     const btnUp = document.getElementById("btn-up");
     const btnDown = document.getElementById("btn-down");

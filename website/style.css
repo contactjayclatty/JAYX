@@ -208,10 +208,41 @@ body {
     border-color: #000;
 }
 
+.nav-link.active {
+    color: var(--orange-primary);
+    border-color: var(--border-hover);
+}
+
 .nav-actions .btn {
     padding: 6px 12px;
     font-size: 0.7rem;
     border-radius: 0px;
+}
+
+/* Page Header (sub-pages without the full hero) */
+.page-hero {
+    padding: 150px 24px 40px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+}
+
+.page-hero p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 110px 16px 32px;
+    }
 }
 
 /* Hero Section */
@@ -630,6 +661,53 @@ body {
     font-size: 0.75rem;
     font-weight: bold;
     border: 1px solid rgba(255,107,0,0.2);
+}
+
+/* Explore Other Pages (Home) */
+.explore-section {
+    padding: 60px 24px 20px;
+}
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.explore-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    padding: 24px;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+}
+
+.explore-card:hover {
+    border-color: var(--orange-primary);
+    box-shadow: 6px 6px 0px #000;
+    transform: translateY(-4px);
+}
+
+.explore-card .explore-title {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.explore-card .explore-arrow {
+    color: var(--orange-primary);
+    font-family: var(--font-mono);
+}
+
+.explore-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* Console Section */
